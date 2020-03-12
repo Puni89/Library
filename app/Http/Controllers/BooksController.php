@@ -11,15 +11,23 @@ class BooksController extends Controller
     
     public function store(Request $request)
     {
-        Book::create($this->validateRequiest());
+       $book = Book::create($this->validateRequiest());
+       return redirect($book->path());
     }
 
     public function update(Book $book){ 
 
         $book->update($this->validateRequiest());
+        return redirect($book->path());
     }
 
-    public function validateRequiest(){
+
+    public function destroy(Book $book){
+        $book->delete();
+        return redirect('/books');
+    }
+
+    protected function validateRequiest(){
         $rule = [
                   'title' => 'required',
                   'author' => 'required'
