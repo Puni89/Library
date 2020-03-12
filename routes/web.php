@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('/books','BooksController@store');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::patch('/books/{book}','BooksController@update');
